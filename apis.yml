@@ -5,8 +5,7 @@ url: >2-
 apis:
   - aid: fair-housing-and-equal-opportunity:fair-housing-and-equal-opportunity
     name: Fair Housing and Equal Opportunity
-    tags:
-      - API
+    tags: []
     humanURL: https://www.hud.gov/fairhousing
     properties:
       - url: https://www.hud.gov/fairhousing
