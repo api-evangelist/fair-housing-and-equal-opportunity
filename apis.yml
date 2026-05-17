@@ -6,7 +6,7 @@ description: >-
   diverse, inclusive communities by leading the nation in the enforcement,
   administration, development, and public understanding of federal fair housing
   policies and laws.
-type: Contract
+kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Equal Opportunity
@@ -55,7 +55,7 @@ common:
     url: https://hudgis-hud.opendata.arcgis.com/
   - type: HUD User
     url: https://www.huduser.gov/portal/home.html
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/HUD
 maintainers:
   - FN: Kin Lane
