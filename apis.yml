@@ -47,6 +47,8 @@ apis:
       - type: HUD User Data
         url: https://www.huduser.gov/portal/pdrdatas_landing.html
 common:
+  - type: DomainSecurity
+    url: security/fair-housing-and-equal-opportunity-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/office-of-fair-housing-and-equal-opportunity
   - type: Website
