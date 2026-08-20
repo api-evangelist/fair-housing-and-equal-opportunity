@@ -23,6 +23,12 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fair-housi
 tags:
   - Equal Opportunity
   - Fair Housing
+  - Federal-Government
+  - Housing
+  - HUD
+tags_raw:
+  - Equal Opportunity
+  - Fair Housing
   - Federal Government
   - Housing
   - HUD
@@ -46,6 +52,10 @@ apis:
       API.
     humanURL: https://www.hud.gov/fairhousing
     tags:
+      - Equal Opportunity
+      - Fair Housing
+      - Federal-Government
+    tags_raw:
       - Equal Opportunity
       - Fair Housing
       - Federal Government
