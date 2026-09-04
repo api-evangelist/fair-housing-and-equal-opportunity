@@ -47,7 +47,7 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/fair-housing-and-equal-opportunity/refs/heads/main/apis.yml
 created: '2024-12-03'
 modified: '2026-04-28'
-position: Consumer
+position: Consuming
 access: 3rd-Party
 specificationVersion: '0.23'
 apis:
