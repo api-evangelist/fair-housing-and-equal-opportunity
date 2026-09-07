@@ -1,0 +1,81 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  hud.gov press releases and program pages, the AFFH-T data documentation on
+  docs.huduser.gov, and the ArcGIS service metadata fetched into arcgis/ on
+  2026-09-07.
+provider: Fair Housing and Equal Opportunity
+providerId: fair-housing-and-equal-opportunity
+summary: >-
+  FHEO publishes no API versioning policy, no deprecation policy, no Sunset or
+  Deprecation header commitment, no SLA and no status page. What DOES version
+  here is the data and the underlying rule — and the governing rule for the
+  AFFH-T surface has been terminated, which is the material lifecycle fact on
+  this record.
+api_versioning:
+  policy_published: false
+  scheme: platform-version
+  in_url: false
+  current:
+    arcgis_online_rest: 12
+    egis_arcgis_server_rest: 10.71
+  note: >-
+    The only version numbers on the wire belong to Esri's platform, not to any
+    FHEO contract. A consumer has no FHEO-published signal that a layer's schema
+    changed.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: []
+  note: >-
+    No RFC 8594 Sunset or Deprecation header was returned by any probed
+    endpoint. Layers can be republished or withdrawn from HUD Open Data without
+    a machine-readable notice.
+sla:
+  published: false
+status_page:
+  published: false
+  note: >-
+    Neither HUD nor FHEO publishes a status page for these services. The AFFH-T
+    web front end at https://egis.hud.gov/affht/ returned HTTP 503 on
+    2026-09-07 with no status surface to explain it, while the ArcGIS REST
+    services behind it returned 200 — an outage a consumer can only discover by
+    calling.
+data_versioning:
+  scheme: AFFHT data version
+  current: AFFHT0007
+  current_note: >-
+    As of the August 2024 documentation, AFFH-T maps and tables use data version
+    AFFHT0007, built on the FY2023 list of program participants and Census 2020
+    geographies.
+  documentation: https://docs.huduser.gov/archives/sites/default/files/datasets/affh/AFFH-T-Data-Documentation-AFFHT0007-August-2024.pdf
+  geographic_vintages:
+    - layer: RECAP
+      vintages: [1990, 2000, 2010, current]
+    - layer: RECAP_2020
+      vintages: [2020]
+regulatory_lifecycle:
+  - event: 2021 Affirmatively Furthering Fair Housing rule terminated
+    date_recorded: '2026-09-07'
+    source: https://www.hud.gov/news/hud-no-25-034
+    http_status: 200
+    impact: >-
+      The AFFH-T Data and Mapping Tool exists to support the AFFH obligation.
+      HUD has announced termination of the 2021 AFFH rule, so the AFFH-T surface
+      is at material risk of withdrawal even though its REST services answered
+      200 when probed. Anyone depending on egis.hud.gov/arcgis/rest/services/affht
+      or the R/ECAP layers should treat them as unsupported and mirror the data.
+  - event: HUD proposed rule / red-tape reduction coverage
+    date_recorded: '2026-03-13'
+    source: blogs/2026-03-13-secretary-scott-turner-applauds-president-trump-for-cutting-red-tape-restoring-h.md
+    impact: Contextual — same policy direction, captured in this repo's blog pull.
+change_log:
+  published: false
+  note: >-
+    No dated API or dataset changelog is published. HUD press releases at
+    https://www.hud.gov/press are the only dated public record, and they are
+    policy announcements, not change entries.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

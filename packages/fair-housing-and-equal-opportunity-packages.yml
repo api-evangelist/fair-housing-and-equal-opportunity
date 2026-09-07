@@ -1,0 +1,45 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  npm registry search (registry.npmjs.org/-/v1/search), PyPI JSON API,
+  github.com/hudgov repository listing via the GitHub API, and the HUD Open Data
+  and FHEO program pages — all probed 2026-09-07.
+provider: Fair Housing and Equal Opportunity
+providerId: fair-housing-and-equal-opportunity
+package_count: 0
+official_package_count: 0
+note: >-
+  FHEO publishes no first-party client library in any registry, and neither does
+  HUD for these surfaces. github.com/hudgov holds two repositories
+  (Location-Affordability, LRS) and neither is an API client. The FHEO surfaces
+  are ArcGIS REST feature services, so the practical clients are Esri's own
+  generic libraries (@esri/arcgis-rest-request, arcgis-python-api) and any
+  GeoJSON-capable HTTP client; those are Esri packages, not HUD packages, and
+  are recorded below as third-party context only — official is false for both
+  and NO SDKs pointer is emitted in apis.yml.
+packages: []
+third_party_context:
+  - name: '@esri/arcgis-rest-request'
+    registry: npm
+    official: false
+    vendor: Esri
+    note: >-
+      Generic ArcGIS REST client. Not published by HUD or FHEO; listed only
+      because the FHEO feature services speak the ArcGIS REST protocol. Version
+      not recorded because this pipeline does not track a vendor's platform SDK
+      as a provider package.
+    version: null
+    published: null
+  - name: mcp-fairrent
+    registry: npm
+    official: false
+    vendor: '@haksanlulz (community)'
+    note: >-
+      A community MCP server wrapping HUD Fair Market Rents, which is a PD&R
+      surface on the parent HUD record, not an FHEO surface. Noted so a future
+      pass does not mistake it for an FHEO server.
+    version: null
+    published: null
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,125 @@
+generated: '2026-09-07'
+method: probed
+source: >-
+  ArcGIS REST service and layer metadata fetched into arcgis/ on 2026-09-07,
+  plus the response headers of a live unauthenticated query. FHEO publishes no
+  conventions document of its own; everything below was measured off the wire.
+provider: Fair Housing and Equal Opportunity
+providerId: fair-housing-and-equal-opportunity
+protocol: ArcGIS REST (Esri GeoServices)
+summary: >-
+  Four read-only ArcGIS REST feature services plus one ArcGIS Server map/GP
+  folder. Query and Extract capabilities only; no create, update or delete
+  exists on any layer, so the write-side conventions below are honestly `na`
+  rather than missing.
+auth:
+  style: none
+  detail: See authentication/fair-housing-and-equal-opportunity-authentication.yml
+idempotency:
+  coverage: na
+  scope: []
+  header: null
+  detail: >-
+    NOT APPLICABLE — there is no write surface. Every layer advertises
+    capabilities "Query,Extract"; no mutating operation exists to replay. All
+    reads are naturally idempotent and cacheable (the services return
+    `cache-control: public, max-age=30, s-maxage=30`).
+reversibility:
+  grade: na
+  detail: >-
+    NOT APPLICABLE — read-only API. Nothing an agent calls here changes state,
+    so there is no action to take back and no reversal window to state. Recorded
+    as `na` deliberately rather than as a zero.
+  write_surfaces: []
+dry_run_mode:
+  supported: na
+  detail: >-
+    NOT APPLICABLE — read-only API. A query IS the rehearsal. `returnCountOnly=true`
+    and `returnIdsOnly=true` let a caller size a result set before pulling it,
+    which is the closest analogue and is a query option, not a dry-run mode.
+pagination:
+  style: offset
+  params:
+    offset: resultOffset
+    limit: resultRecordCount
+    order: orderByFields
+  supported: true
+  supported_evidence: advancedQueryCapabilities.supportsPagination = true on every layer
+  page_cap:
+    FHAP_Grantees: 1000
+    FHIP_Grantees: 1000
+    RECAP: 1000
+    RECAP_2020: 2000
+  response_fields:
+    truncation_flag: exceededTransferLimit
+  detail: >-
+    The server caps a page at maxRecordCount and sets `exceededTransferLimit:
+    true` in the body when it truncated. A client that ignores that flag will
+    silently read a partial dataset — there is no Link header and no cursor.
+field_selection:
+  param: outFields
+  detail: >-
+    `outFields=*` returns every field; a comma-separated list returns a subset.
+    `returnGeometry=false` drops the geometry, which is the single largest
+    response-size lever on the R/ECAP polygon layers.
+filtering:
+  param: where
+  language: SQL-92 subset
+  spatial_params:
+    - geometry
+    - geometryType
+    - spatialRel
+    - inSR
+  detail: '`where=1=1` is the idiom for "all rows".'
+response_formats:
+  param: f
+  values:
+    - json
+    - pjson
+    - geojson
+    - html
+  supported_query_formats_declared: JSON
+  detail: >-
+    supportedQueryFormats on the service metadata declares JSON only, but
+    `f=geojson` is served by ArcGIS Online for these layers and the HUD Open
+    Data site publishes a GeoJSON download URL per dataset.
+versioning:
+  style: platform-version
+  current: 'ArcGIS REST currentVersion 12 (ArcGIS Online services); 10.71 (egis.hud.gov ArcGIS Server)'
+  in_url: false
+  detail: >-
+    There is no FHEO API version. The version that moves is the DATA version —
+    see lifecycle/fair-housing-and-equal-opportunity-lifecycle.yml.
+error_envelope:
+  shape: '{"error": {"code", "message", "details"}}'
+  rfc9457: false
+  warning: >-
+    Errors are returned with HTTP 200. See
+    errors/fair-housing-and-equal-opportunity-problem-types.yml.
+rate_limit_signaling:
+  headers_observed:
+    - x-esri-org-request-units-per-min
+    - x-esri-query-request-units
+  standard_headers: false
+  detail: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header was returned. See
+    rate-limits/fair-housing-and-equal-opportunity-rate-limits.yml.
+request_tracing:
+  headers_observed:
+    - x-arcgis-trace-id
+    - x-arcgis-correlation-id
+    - x-azure-ref
+  detail: >-
+    Trace identifiers are returned but FHEO publishes no support channel that
+    accepts them; a report goes to the FHEO contact page or gis_helpdesk@hud.gov
+    as free text.
+metadata_fields: []
+cross_links:
+  errors: errors/fair-housing-and-equal-opportunity-problem-types.yml
+  lifecycle: lifecycle/fair-housing-and-equal-opportunity-lifecycle.yml
+  authentication: authentication/fair-housing-and-equal-opportunity-authentication.yml
+  rate_limits: rate-limits/fair-housing-and-equal-opportunity-rate-limits.yml
+  data_model: data-model/fair-housing-and-equal-opportunity-data-model.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

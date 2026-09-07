@@ -1,0 +1,76 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  Each file in this directory is the provider's own ArcGIS REST service or layer
+  metadata document, fetched verbatim on 2026-09-07 from the URL recorded
+  against it. Nothing here was authored, reshaped or derived by API Evangelist.
+provider: Fair Housing and Equal Opportunity
+providerId: fair-housing-and-equal-opportunity
+note: >-
+  These are the closest thing FHEO has to a machine-readable contract. ArcGIS
+  REST service metadata is self-describing the way an OGC GetCapabilities
+  document is: it carries the layer's field schema, geometry type, record cap,
+  query capabilities and copyright. It is NOT OpenAPI, AsyncAPI, GraphQL SDL,
+  WSDL or Protobuf, so it does not satisfy contract_present, and this record
+  should not be read as claiming FHEO publishes an API contract. It is saved
+  because it is real, it was fetched, and every derivation in this repo
+  (data-model, conventions, mcp candidate tools) is grounded in it.
+ownership: >-
+  services.arcgis.com/VTyQ9soqVukalItT is HUD's own ArcGIS Online organisation
+  (items are namespaced HUD:: on hudgis-hud.opendata.arcgis.com) and
+  egis.hud.gov is HUD's ArcGIS Server. These specific services are attributed to
+  FHEO rather than to the parent HUD record because they publish FHEO's own
+  program data and say so: the FHAP service description reads "If such agencies
+  are determined by FHEO to enforce state or local fair housing laws...", FHIP
+  is the FHEO grant program under 42 U.S.C. 3616, and the affht folder is the
+  AFFH Data and Mapping Tool built for FHEO's AFFH rule. The parent HUD record
+  covers the eGIS storefront generally and does not list any of these.
+documents:
+  - file: fair-housing-and-equal-opportunity-fhap-grantees-featureserver.json
+    url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer?f=pjson
+    http_status: 200
+    fetched: '2026-09-07'
+    kind: ArcGIS FeatureServer metadata
+  - file: fair-housing-and-equal-opportunity-fhap-grantees-layer.json
+    url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer/0?f=pjson
+    http_status: 200
+    fetched: '2026-09-07'
+    kind: ArcGIS layer schema
+  - file: fair-housing-and-equal-opportunity-fhip-grantees-featureserver.json
+    url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Initiatives_Program_Grantees/FeatureServer?f=pjson
+    http_status: 200
+    fetched: '2026-09-07'
+    kind: ArcGIS FeatureServer metadata
+  - file: fair-housing-and-equal-opportunity-fhip-grantees-layer.json
+    url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Initiatives_Program_Grantees/FeatureServer/0?f=pjson
+    http_status: 200
+    fetched: '2026-09-07'
+    kind: ArcGIS layer schema
+  - file: fair-housing-and-equal-opportunity-recap-featureserver.json
+    url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty/FeatureServer?f=pjson
+    http_status: 200
+    fetched: '2026-09-07'
+    kind: ArcGIS FeatureServer metadata
+  - file: fair-housing-and-equal-opportunity-recap-layer.json
+    url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty/FeatureServer/15?f=pjson
+    http_status: 200
+    fetched: '2026-09-07'
+    kind: ArcGIS layer schema
+  - file: fair-housing-and-equal-opportunity-recap-2020-featureserver.json
+    url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty_2020/FeatureServer?f=pjson
+    http_status: 200
+    fetched: '2026-09-07'
+    kind: ArcGIS FeatureServer metadata
+  - file: fair-housing-and-equal-opportunity-recap-2020-layer.json
+    url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty_2020/FeatureServer/16?f=pjson
+    http_status: 200
+    fetched: '2026-09-07'
+    kind: ArcGIS layer schema
+  - file: fair-housing-and-equal-opportunity-affht-mapserver.json
+    url: https://egis.hud.gov/arcgis/rest/services/affht/AffhtMapService/MapServer?f=pjson
+    http_status: 200
+    fetched: '2026-09-07'
+    kind: ArcGIS Server MapServer metadata
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,173 @@
+generated: '2026-09-07'
+method: derived
+source: >-
+  Derived from the four ArcGIS layer schemas fetched verbatim into arcgis/ on
+  2026-09-07, plus live returnCountOnly queries against each layer. No $ref
+  graph exists because there is no OpenAPI; the relationships below are read off
+  shared identifier fields, which is the only join these layers actually offer.
+provider: Fair Housing and Equal Opportunity
+providerId: fair-housing-and-equal-opportunity
+note: >-
+  These are flat geospatial feature layers, not a normalised object model. There
+  are no foreign keys and no server-side joins — ArcGIS `relationships` is empty
+  on every layer. Every relationship recorded below is a CLIENT-SIDE join on a
+  shared code, and is marked as such.
+entities:
+  - name: FHAPGrantee
+    layer: FHAP_Grantees
+    service: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer/0
+    geometry: esriGeometryPoint
+    id_field: FID
+    record_count: 889
+    counted: '2026-09-07'
+    description: >-
+      A state or local fair housing enforcement agency that FHEO has determined
+      administers a law substantially equivalent to the federal Fair Housing
+      Act, and which therefore receives FHAP funding.
+    fields:
+      - {name: FID, type: OID, role: identifier}
+      - {name: TEAPOTS_ID, type: String, role: identifier, note: HUD TEAPOTS case-system agency identifier}
+      - {name: FHAP_NAME, type: String, role: label}
+      - {name: STATE_LOCA, type: String, role: classification, note: state vs local agency}
+      - {name: REGION, type: String, role: classification, note: HUD region}
+      - {name: ADDRESS, type: String, role: address}
+      - {name: CITY, type: String, role: address}
+      - {name: STATE, type: String, role: geo_code}
+      - {name: ZIP, type: String, role: geo_code}
+      - {name: AMOUNT, type: Integer, role: measure}
+      - {name: AWARD_AMT, type: Integer, role: measure}
+      - {name: YEAR, type: Date, role: temporal}
+      - {name: LAT, type: Double, role: geo}
+      - {name: LON, type: Double, role: geo}
+      - {name: COUNTY_LEV, type: String, role: geo_code}
+      - {name: PLACE_LEVE, type: String, role: geo_code}
+      - {name: TRACT_LEVE, type: String, role: geo_code, note: 11-digit census tract GEOID — joins to RECAP.GEOID}
+      - {name: BLKGRP_LEV, type: String, role: geo_code}
+      - {name: UGLG_KEY, type: String, role: identifier, note: unit of general local government key}
+      - {name: FCD_FIPS91, type: String, role: geo_code, note: FIPS-based jurisdiction code}
+      - {name: MSGUSPS, type: String, role: quality_flag, note: address geocoding message}
+      - {name: MSG2KX, type: String, role: quality_flag}
+  - name: FHIPGrantee
+    layer: FHIP_Grantees
+    service: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Initiatives_Program_Grantees/FeatureServer/0
+    geometry: esriGeometryPoint
+    id_field: OBJECTID
+    record_count: 1445
+    counted: '2026-09-07'
+    description: >-
+      A private non-profit organization awarded a competitive Fair Housing
+      Initiatives Program grant under 42 U.S.C. 3616.
+    fields:
+      - {name: OBJECTID, type: OID, role: identifier}
+      - {name: RECIPIENT, type: String, role: label}
+      - {name: RECIPIENT_, type: String, role: label, note: second recipient field, likely a truncated alternate name}
+      - {name: COMPONENT, type: String, role: classification, note: FHIP grant component}
+      - {name: ADDRESS, type: String, role: address}
+      - {name: ADDRESS_2, type: String, role: address}
+      - {name: PO_BOX, type: String, role: address}
+      - {name: CITY, type: String, role: address}
+      - {name: STATE, type: String, role: geo_code}
+      - {name: ZIP, type: String, role: geo_code}
+      - {name: AMOUNT, type: Integer, role: measure}
+      - {name: AWARD_AMT, type: Integer, role: measure}
+      - {name: YEAR, type: Date, role: temporal}
+      - {name: NOTES, type: String, role: annotation}
+      - {name: LAT, type: Double, role: geo}
+      - {name: LON, type: Double, role: geo}
+      - {name: COUNTY_LEV, type: String, role: geo_code}
+      - {name: PLACE_LEVE, type: String, role: geo_code}
+      - {name: TRACT_LEVE, type: String, role: geo_code, note: 11-digit census tract GEOID — joins to RECAP.GEOID}
+      - {name: BLKGRP_LEV, type: String, role: geo_code}
+      - {name: UGLG_KEY, type: String, role: identifier}
+      - {name: FCD_FIPS91, type: String, role: geo_code}
+      - {name: MSGUSPS, type: String, role: quality_flag}
+      - {name: MSG2KX, type: String, role: quality_flag}
+  - name: RECAPTract
+    layer: RECAP
+    service: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty/FeatureServer/15
+    geometry: esriGeometryPolygon
+    id_field: OBJECTID
+    record_count: 5034
+    counted: '2026-09-07'
+    description: >-
+      A census tract flagged as a Racially or Ethnically Concentrated Area of
+      Poverty, with the flag carried across four decennial vintages.
+    fields:
+      - {name: OBJECTID, type: OID, role: identifier}
+      - {name: GEOID, type: String, role: identifier, note: census tract GEOID — the join key to any other tract-level dataset}
+      - {name: STATE, type: String, role: geo_code}
+      - {name: STUSAB, type: String, role: geo_code}
+      - {name: STATE_NAME, type: String, role: label}
+      - {name: COUNTY, type: String, role: geo_code}
+      - {name: COUNTY_NAME, type: String, role: label}
+      - {name: CNTY_FIPS, type: String, role: geo_code}
+      - {name: TRACT, type: String, role: geo_code}
+      - {name: RCAP_90, type: Integer, role: flag}
+      - {name: RCAP_00, type: Integer, role: flag}
+      - {name: RCAP_10, type: Integer, role: flag}
+      - {name: RCAP_Current, type: Integer, role: flag}
+      - {name: Shape__Area, type: Double, role: geo}
+      - {name: Shape__Length, type: Double, role: geo}
+  - name: RECAPTract2020
+    layer: RECAP_2020
+    service: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty_2020/FeatureServer/16
+    geometry: esriGeometryPolygon
+    id_field: OBJECTID
+    record_count: 3559
+    counted: '2026-09-07'
+    description: >-
+      The same R/ECAP flag rebuilt on Census 2020 tract geographies. A separate
+      service, not a new field on RECAPTract, so the two vintages cannot be
+      joined server-side.
+    fields:
+      - {name: OBJECTID, type: OID, role: identifier}
+      - {name: GEOID, type: String, role: identifier}
+      - {name: STATE, type: String, role: geo_code}
+      - {name: STUSAB, type: String, role: geo_code}
+      - {name: STATE_NAME, type: String, role: label}
+      - {name: COUNTY, type: String, role: geo_code}
+      - {name: COUNTY_NAME, type: String, role: label}
+      - {name: CNTY_FIPS, type: String, role: geo_code}
+      - {name: TRACT, type: String, role: geo_code}
+      - {name: RCAP_20, type: Integer, role: flag}
+      - {name: Shape__Area, type: Double, role: geo}
+      - {name: Shape__Length, type: Double, role: geo}
+relationships:
+  - from: RECAPTract
+    to: RECAPTract2020
+    cardinality: has_one
+    via: GEOID
+    join: client-side
+    note: >-
+      Only where a 2010-vintage tract survived unchanged into 2020. Tract
+      boundaries were redrawn, so this is an approximate join, not a key.
+  - from: FHAPGrantee
+    to: RECAPTract
+    cardinality: has_one
+    via: TRACT_LEVE -> GEOID
+    join: client-side
+    verified: true
+    evidence: >-
+      FHAP_Grantees.TRACT_LEVE is an 11-digit state+county+tract GEOID (observed
+      value 12031017200), and querying RECAP with GEOID='12031017200' returned
+      count 1 on 2026-09-07. NOT TRACT: RECAP.TRACT holds only the 6-digit tract
+      component (e.g. 003603), so a join on TRACT alone collides across counties.
+  - from: FHIPGrantee
+    to: RECAPTract
+    cardinality: has_one
+    via: TRACT_LEVE -> GEOID
+    join: client-side
+    verified: false
+    note: Same field shape as FHAPGrantee; the join was verified on FHAP only.
+  - from: FHAPGrantee
+    to: FHIPGrantee
+    cardinality: has_many
+    via: UGLG_KEY
+    join: client-side
+    note: >-
+      Both layers carry the same unit-of-general-local-government key, so FHAP
+      and FHIP awards can be rolled up per jurisdiction.
+id_prefixes: []
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

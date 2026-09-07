@@ -1,0 +1,105 @@
+generated: '2026-09-07'
+method: probed
+source: >-
+  Live probes on 2026-09-07 against every FHEO baseURL plus the HUD Open Data
+  host, and the ArcGIS service metadata saved in arcgis/. Every entry below was
+  tested; none was inferred from marketing copy.
+provider: Fair Housing and Equal Opportunity
+providerId: fair-housing-and-equal-opportunity
+note: >-
+  FHEO makes no conformance claim anywhere on its own pages. This file records
+  what the wire says, including four honest negatives that a reader would
+  otherwise have to re-test.
+conformance:
+  - id: arcgis-rest-geoservices
+    label: Esri ArcGIS REST / GeoServices
+    conforms: true
+    evidence: >-
+      All four feature services answer the ArcGIS REST contract
+      (currentVersion, capabilities "Query,Extract", /query with where,
+      outFields, resultOffset, resultRecordCount) and the AFFH-T MapServer
+      answers the ArcGIS Server MapServer contract at currentVersion 10.71.
+    evidence_url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer?f=pjson
+  - id: geojson
+    label: 'RFC 7946 GeoJSON output'
+    conforms: true
+    evidence: >-
+      A /query with f=geojson returned a valid FeatureCollection; HUD Open Data
+      also publishes a per-dataset GeoJSON download URL.
+    evidence_url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer/0/query?where=1%3D1&outFields=FHAP_NAME&returnGeometry=false&resultRecordCount=1&f=geojson
+  - id: dcat-us-1.1
+    label: DCAT-US 1.1 catalog description
+    conforms: true
+    evidence: >-
+      Every FHEO dataset is described in HUD's DCAT-US 1.1 feed and in the
+      department-wide data.json, which is how these services were discovered.
+      The catalog is HUD-wide (a parent surface); the FHEO datasets inside it
+      are the FHEO-attributable part.
+    evidence_url: https://hudgis-hud.opendata.arcgis.com/api/feed/dcat-us/1.1.json?id=f226a169a902414ea17f545d9d02b159
+  - id: census-tract-geoid
+    label: US Census tract GEOID identifier scheme
+    conforms: true
+    evidence: >-
+      RECAP.GEOID and the grantee layers' TRACT_LEVE both carry 11-digit
+      state+county+tract GEOIDs; a cross-layer lookup on GEOID='12031017200'
+      returned exactly one match. This is the identifier scheme that makes FHEO
+      data joinable to any other US tract-level dataset.
+    evidence_url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty/FeatureServer/15/query?where=GEOID%3D%2712031017200%27&returnCountOnly=true&f=json
+  - id: ogc-api-features
+    label: OGC API - Features
+    conforms: false
+    evidence: >-
+      No OGCFeatureServer endpoint exists. A request to the OGCFeatureServer
+      path returned the ArcGIS envelope {"error":{"code":400,"message":"Invalid
+      URL"}} rather than a landing page or conformance document.
+    evidence_url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/OGCFeatureServer/conformance?f=json
+  - id: ogc-ows-getcapabilities
+    label: 'Classic OGC OWS (WMS/WFS GetCapabilities)'
+    conforms: false
+    evidence: >-
+      WMSServer and WFSServer under egis.hud.gov/arcgis/services/affht/AffhtMapService/MapServer
+      returned HTTP 400 ArcGIS Server error pages, not *_Capabilities XML. The
+      ArcGIS Online WFSServer path returned an HTML shell. No OGC contract is
+      served on any FHEO host.
+    evidence_url: https://egis.hud.gov/arcgis/services/affht/AffhtMapService/MapServer/WMSServer?service=WMS&request=GetCapabilities
+  - id: rfc9457
+    label: 'RFC 9457 Problem Details for HTTP APIs'
+    conforms: false
+    evidence: >-
+      Errors are returned as {"error":{"code","message","details"}} with
+      content-type application/json AND an HTTP 200 status. See
+      errors/fair-housing-and-equal-opportunity-problem-types.yml.
+    evidence_url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer/0/query?where=BOGUS&f=json
+  - id: ratelimit-headers
+    label: 'IETF RateLimit header fields'
+    conforms: false
+    evidence: >-
+      No RateLimit-*, X-RateLimit-* or Retry-After header was returned. The only
+      budget signal is the Esri-proprietary x-esri-org-request-units-per-min.
+    evidence_url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer/0/query?where=1%3D1&resultRecordCount=1&f=json
+  - id: oauth2
+    label: OAuth 2.0
+    conforms: false
+    evidence: >-
+      No authorization server metadata on any host; the services are anonymous
+      and there is no write surface to authorize.
+    evidence_url: https://www.hud.gov/.well-known/oauth-authorization-server
+domain_standards:
+  - id: title-viii-fair-housing-act
+    label: Title VIII of the Civil Rights Act of 1968 (Fair Housing Act)
+    declared_in_contract: false
+    note: >-
+      REWARD-ONLY AND NOT AWARDED. The Fair Housing Act is the statute FHEO
+      enforces, not a data-interchange standard, and nothing in these layers
+      declares a machine-readable domain schema for it. There is no fair-housing
+      equivalent of a SCIM URN or an HL7 message type to look for, so this slot
+      is genuinely empty rather than missed.
+compliance_certifications: []
+compliance_note: >-
+  FHEO publishes no SOC 2 / ISO 27001 / FedRAMP attestation of its own. HUD's
+  department-wide Vulnerability Disclosure Policy covers these systems and is
+  recorded in security/fair-housing-and-equal-opportunity-vulnerability-disclosure.yml.
+  No Compliance pointer is emitted in apis.yml because no certification is published.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

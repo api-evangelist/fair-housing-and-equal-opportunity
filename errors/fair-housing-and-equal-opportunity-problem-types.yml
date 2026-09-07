@@ -1,0 +1,62 @@
+generated: '2026-09-07'
+method: probed
+source: >-
+  Live error responses observed on 2026-09-07 from
+  https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer/0/query
+  There is no published error reference for these services and no OpenAPI to
+  derive 4xx/5xx responses from, so every entry below was observed, not read.
+provider: Fair Housing and Equal Opportunity
+providerId: fair-housing-and-equal-opportunity
+format: esri-rest-error
+rfc9457: false
+content_type: application/json
+envelope:
+  shape: '{"error": {"code": <int>, "message": <string>, "details": [<string>]}}'
+  code_field: error.code
+  message_field: error.message
+  detail_field: error.details
+agent_hazard:
+  http_status_lies: true
+  note: >-
+    THE HTTP STATUS DOES NOT CARRY THE ERROR. A malformed query against the FHAP
+    grantee layer returned HTTP **200** with an application/json body of
+    {"error":{"code":400,"message":"Cannot perform query. Invalid query
+    parameters.","details":["'where' parameter is invalid"]}}. An agent or
+    client that branches on the HTTP status code will treat this failure as a
+    success and parse the error envelope as a result set. The only safe check is
+    the presence of a top-level `error` key in the JSON body. This is ArcGIS
+    REST platform behaviour, not an FHEO choice, but it applies to every FHEO
+    surface in this record.
+problem_types:
+  - code: 400
+    title: Invalid query parameters
+    observed_http_status: 200
+    message: Cannot perform query. Invalid query parameters.
+    detail_example: "'where' parameter is invalid"
+    remediation: >-
+      Send a valid SQL-92 where clause against a field that exists on the layer.
+      Fetch the layer metadata (/FeatureServer/{layerId}?f=json, saved in
+      arcgis/) and use the field names it lists; `1=1` selects all rows.
+    evidence: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer/0/query?where=BOGUS&f=json
+  - code: 400
+    title: Invalid URL
+    observed_http_status: 200
+    message: Invalid URL
+    detail_example: Invalid URL
+    remediation: >-
+      The path segment does not exist on this service. Notably there is no
+      OGCFeatureServer endpoint on these services — an OGC API Features request
+      returns this error rather than a 404.
+    evidence: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/OGCFeatureServer?f=json
+not_observed:
+  - note: >-
+      No 401/403 was observed because the services are anonymous. No 429 was
+      observed; the org-level request-unit budget was at usage=275 of max=6000
+      when probed, so throttling behaviour is undocumented and untested here.
+  - note: >-
+      The AFFH-T web front end at https://egis.hud.gov/affht/ returned HTTP 503
+      (an IIS "Service Unavailable" page) on 2026-09-07 while the REST services
+      behind it returned 200.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

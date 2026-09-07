@@ -1,0 +1,84 @@
+# Fair Housing and Equal Opportunity (FHEO)
+
+> The Office of Fair Housing and Equal Opportunity is the HUD program office that
+> enforces the Fair Housing Act, administers the Fair Housing Assistance Program
+> (FHAP) and the Fair Housing Initiatives Program (FHIP), and owns the
+> Affirmatively Furthering Fair Housing (AFFH) rule and its Data and Mapping Tool.
+> FHEO runs no developer portal and publishes no OpenAPI. Its machine-readable
+> surfaces are four anonymously callable ArcGIS REST feature services inside HUD's
+> ArcGIS Online organisation, plus the AFFH-T map and geoprocessing services on
+> HUD's eGIS ArcGIS Server.
+
+Generated 2026-09-07 by the API Evangelist enrichment pipeline from this repo's
+apis.yml and probed artifacts. Not published by FHEO. Nothing below was inferred:
+every endpoint was called and every count was measured on 2026-09-07.
+
+## Read this first
+
+- No API key, no account, no registration, no charge. Every surface is anonymous.
+- Read-only. Every layer advertises capabilities "Query,Extract" — there is no
+  create, update or delete, so there is nothing to undo and nothing to make
+  idempotent.
+- ERRORS ARRIVE WITH HTTP 200. A failed request returns
+  `{"error":{"code":400,"message":"...","details":[...]}}` with a 200 status.
+  Check for a top-level `error` key in the body; do not branch on the status code.
+- Pages are capped (1,000 or 2,000 records). When the server truncates it sets
+  `exceededTransferLimit: true` in the body. There is no cursor and no Link header.
+- FHEO is a program office INSIDE HUD. The HUD USER FMR/IL API, the FHA lookups
+  and the department-wide open data catalog belong to the parent HUD record, not
+  to this one.
+
+## APIs
+
+- [FHAP Grantees FeatureServer](https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer): 889 point features. State and local fair housing agencies FHEO has certified as substantially equivalent, with award amounts and jurisdiction codes. Layer 0, 22 fields.
+- [FHIP Grantees FeatureServer](https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Initiatives_Program_Grantees/FeatureServer): 1,445 point features. Private non-profits funded under 42 U.S.C. 3616, with program component and award amounts. Layer 0, 24 fields.
+- [R/ECAP FeatureServer](https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty/FeatureServer): 5,034 census tract polygons flagged as Racially or Ethnically Concentrated Areas of Poverty across the 1990/2000/2010 and current vintages. Layer 15.
+- [R/ECAP 2020 FeatureServer](https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty_2020/FeatureServer): 3,559 tract polygons on Census 2020 geographies. Layer 16.
+- [AFFH-T ArcGIS Services](https://egis.hud.gov/arcgis/rest/services/affht): AffhtMapService and AFFHTReportService MapServers, an AFFHTReports geoprocessing service, and WebMaps services behind HUD's AFFH Data and Mapping Tool.
+
+## Calling it
+
+Query a layer:
+
+    GET https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer/0/query?where=STATE='CA'&outFields=*&returnGeometry=false&f=json
+
+Useful parameters: `where` (SQL-92 subset; `1=1` means all rows), `outFields`
+(comma list or `*`), `returnGeometry=false`, `resultOffset` + `resultRecordCount`
+for paging, `orderByFields`, `returnCountOnly=true` to size a result set first,
+`f=json|pjson|geojson`.
+
+Read the field schema before writing a where-clause:
+
+    GET https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer/0?f=json
+
+## Joining the data
+
+`TRACT_LEVE` on both grantee layers is an 11-digit census tract GEOID and joins
+directly to `GEOID` on the R/ECAP layers — verified on 2026-09-07 with
+`GEOID='12031017200'` returning exactly one match. Do NOT join on `TRACT`, which
+holds only the 6-digit tract component and collides across counties. `UGLG_KEY`
+joins FHAP and FHIP grantees to each other by local jurisdiction.
+
+## Documentation
+
+- [FHEO program office](https://www.hud.gov/program_offices/fair_housing_equal_opp)
+- [Fair Housing](https://www.hud.gov/fairhousing)
+- [Report housing discrimination](https://www.hud.gov/fairhousing/fileacomplaint)
+- [FHEO's complaint process](https://www.hud.gov/program_offices/fair_housing_equal_opp/complaint-process)
+- [Contact FHEO](https://www.hud.gov/program_offices/fair_housing_equal_opp/contact_fheo)
+- [HUD Open Data, FHEO datasets](https://hudgis-hud.opendata.arcgis.com/search?tags=fheo)
+- [HUD Vulnerability Disclosure Policy](https://www.hud.gov/vulnerability-disclosure-policy)
+
+## Known gaps and hazards
+
+- No OpenAPI, AsyncAPI, GraphQL SDL, WSDL or .proto exists for any FHEO surface.
+- No OGC API - Features and no WMS/WFS GetCapabilities: those paths return
+  ArcGIS error envelopes, not contracts.
+- No /.well-known/ document on any FHEO or HUD host — security.txt, api-catalog,
+  agent-card.json and the OAuth/OIDC metadata paths all 404.
+- No status page, no SLA, no deprecation policy, no Sunset header, no changelog.
+- The AFFH-T web front end at https://egis.hud.gov/affht/ returned HTTP 503 on
+  2026-09-07 while its REST services returned 200.
+- HUD has announced termination of the 2021 AFFH rule
+  (https://www.hud.gov/news/hud-no-25-034). The AFFH-T and R/ECAP surfaces exist
+  to serve that rule, so treat them as unsupported and mirror anything you rely on.

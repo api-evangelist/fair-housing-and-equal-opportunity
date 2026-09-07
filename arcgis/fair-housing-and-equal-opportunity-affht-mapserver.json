@@ -1,0 +1,462 @@
+{
+ "currentVersion": 10.71,
+ "serviceDescription": "",
+ "mapName": "Layers",
+ "description": "",
+ "copyrightText": "",
+ "supportsDynamicLayers": true,
+ "layers": [
+  {
+   "id": 0,
+   "name": "Boundaries",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "minScale": 4000000,
+   "maxScale": 0,
+   "type": "Group Layer"
+  },
+  {
+   "id": 1,
+   "name": "Region",
+   "parentLayerId": 0,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 2,
+   "name": "Jurisdiction",
+   "parentLayerId": 0,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 3,
+   "name": "TRACT",
+   "parentLayerId": 0,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 4,
+   "name": "BLOCKGROUP",
+   "parentLayerId": 0,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 5,
+   "name": "Dot Density",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    6,
+    7
+   ],
+   "minScale": 4000000,
+   "maxScale": 0,
+   "type": "Group Layer"
+  },
+  {
+   "id": 6,
+   "name": "Limited English Proficiency (Top 5 in Descending Order)",
+   "parentLayerId": 5,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 7,
+   "name": "National Origin (Top 5 in Descending Order)",
+   "parentLayerId": 5,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 8,
+   "name": "Thematic",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    9,
+    15
+   ],
+   "minScale": 4000000,
+   "maxScale": 0,
+   "type": "Group Layer"
+  },
+  {
+   "id": 9,
+   "name": "Blockgroup",
+   "parentLayerId": 8,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    10,
+    11,
+    12
+   ],
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Group Layer"
+  },
+  {
+   "id": 10,
+   "name": "Demographics 2010",
+   "parentLayerId": 9,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 11,
+   "name": "% of Households that are Families with Children",
+   "parentLayerId": 9,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 12,
+   "name": "Indices",
+   "parentLayerId": 9,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    13,
+    14
+   ],
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Group Layer"
+  },
+  {
+   "id": 13,
+   "name": "School Proficiency Index",
+   "parentLayerId": 12,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 14,
+   "name": "Jobs Proximity Index",
+   "parentLayerId": 12,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 15,
+   "name": "Tract",
+   "parentLayerId": 8,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22
+   ],
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Group Layer"
+  },
+  {
+   "id": 16,
+   "name": "R/ECAP",
+   "parentLayerId": 15,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 17,
+   "name": "Disability",
+   "parentLayerId": 15,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 18,
+   "name": "Demographics 1990",
+   "parentLayerId": 15,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 19,
+   "name": "Demographics 2000",
+   "parentLayerId": 15,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 20,
+   "name": "CHAS Data",
+   "parentLayerId": 15,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 21,
+   "name": "Percent Households with Burden",
+   "parentLayerId": 15,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 22,
+   "name": "Indices",
+   "parentLayerId": 15,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+   ],
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Group Layer"
+  },
+  {
+   "id": 23,
+   "name": "Low Poverty Index",
+   "parentLayerId": 22,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 24,
+   "name": "Labor Market Index",
+   "parentLayerId": 22,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 25,
+   "name": "Environmental Health Index",
+   "parentLayerId": 22,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 26,
+   "name": "Percent Voucher Units",
+   "parentLayerId": 22,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 27,
+   "name": "Low Transportation Cost Index",
+   "parentLayerId": 22,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 28,
+   "name": "Transit Trips Index",
+   "parentLayerId": 22,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPolygon"
+  },
+  {
+   "id": 29,
+   "name": "Properties",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    30,
+    31,
+    32,
+    33
+   ],
+   "minScale": 4000000,
+   "maxScale": 0,
+   "type": "Group Layer"
+  },
+  {
+   "id": 30,
+   "name": "LIHTC",
+   "parentLayerId": 29,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPoint"
+  },
+  {
+   "id": 31,
+   "name": "Project-Based Section 8",
+   "parentLayerId": 29,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPoint"
+  },
+  {
+   "id": 32,
+   "name": "Other Multifamily",
+   "parentLayerId": 29,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPoint"
+  },
+  {
+   "id": 33,
+   "name": "Public Housing",
+   "parentLayerId": 29,
+   "defaultVisibility": false,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0,
+   "type": "Feature Layer",
+   "geometryType": "esriGeometryPoint"
+  }
+ ],
+ "tables": [],
+ "spatialReference": {
+  "wkid": 102100,
+  "latestWkid": 3857
+ },
+ "singleFusedMapCache": false,
+ "initialExtent": {
+  "xmin": -9.614522034844606E7,
+  "ymin": -3.6134943308485195E7,
+  "xmax": -7.389371751210703E7,
+  "ymax": -5936475.173453648,
+  "spatialReference": {
+   "wkid": 102100,
+   "latestWkid": 3857
+  }
+ },
+ "fullExtent": {
+  "xmin": -1.98402303903E7,
+  "ymin": 1504672.5742,
+  "xmax": -7201903.5125,
+  "ymax": 1.15371273192E7,
+  "spatialReference": {
+   "wkid": 102100,
+   "latestWkid": 3857
+  }
+ },
+ "minScale": 4000000,
+ "maxScale": 0,
+ "units": "esriMeters",
+ "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+ "documentInfo": {
+  "Title": "",
+  "Author": "",
+  "Comments": "",
+  "Subject": "",
+  "Category": "",
+  "AntialiasingMode": "None",
+  "TextAntialiasingMode": "Force",
+  "Keywords": ""
+ },
+ "capabilities": "Map,Query,Data",
+ "supportedQueryFormats": "JSON, geoJSON",
+ "exportTilesAllowed": false,
+ "supportsDatumTransformation": true,
+ "maxRecordCount": 5000,
+ "maxImageHeight": 4096,
+ "maxImageWidth": 4096,
+ "supportedExtensions": "ClassBreaksRestSOE, KmlServer"
+}

@@ -1,0 +1,97 @@
+generated: '2026-09-07'
+method: probed
+source: >-
+  Live HTTPS probes on 2026-09-07 of every host this record knows — the
+  registrable domain and www, the docs/open-data host, and both API hosts named
+  in apis.yml servers/baseURL. Every path 404d, so NO WellKnown or SecurityTxt
+  pointer is emitted in apis.yml; this file records a measured absence.
+provider: Fair Housing and Equal Opportunity
+providerId: fair-housing-and-equal-opportunity
+note: >-
+  HUD does publish a Vulnerability Disclosure Policy, but as an HTML page at
+  https://www.hud.gov/vulnerability-disclosure-policy rather than at
+  /.well-known/security.txt. www.hud.gov answers /.well-known/security.txt with
+  a bare 404 from the edge and every other /.well-known/* path with the site's
+  200-shaped Drupal 404 template (recorded below as 404, which is the status the
+  server returns). hudgis-hud.opendata.arcgis.com returns empty-bodied 404s.
+hosts:
+  - host: www.hud.gov
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: hud.gov
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: www.huduser.gov
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: hudgis-hud.opendata.arcgis.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: egis.hud.gov
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+  - host: services.arcgis.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403
+      - path: /.well-known/agent-card.json
+        status: 403

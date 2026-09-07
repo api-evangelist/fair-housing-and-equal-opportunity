@@ -5,13 +5,20 @@ description: >-
   eliminate housing discrimination, promote economic opportunity, and achieve
   diverse, inclusive communities by leading the nation in the enforcement,
   administration, development, and public understanding of federal fair housing
-  policies and laws.
+  policies and laws. FHEO administers the Fair Housing Assistance Program
+  (FHAP) and the Fair Housing Initiatives Program (FHIP), enforces Title VIII of
+  the Civil Rights Act, and owns the Affirmatively Furthering Fair Housing
+  (AFFH) rule and its Data and Mapping Tool. FHEO does not run a developer
+  portal of its own; its program data is published as anonymously callable
+  ArcGIS REST feature services inside HUD's ArcGIS Online organization and
+  through the HUD Open Data site, and its AFFH-T map and report services run on
+  HUD's eGIS ArcGIS Server.
 kind: contract
 deliveryModel:
   model: unknown
   open_source: false
   commercial: false
-  callable_host: false
+  callable_host: true
   label: Delivery model not determined — needs a product licence on record
   confidence: low
   source:
@@ -19,48 +26,58 @@ deliveryModel:
   generated: '2026-08-28'
   method: derived
 accessModel:
-  pricing: freemium
-  onboarding: unknown
+  pricing: free
+  onboarding: none
   trial: false
-  try_now: false
-  public: false
-  label: Freemium
-  confidence: medium
+  try_now: true
+  public: true
+  label: Free public federal data — no key, no account
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+  - probed
+  generated: '2026-09-07'
+  method: probed
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fair-housing-and-equal-opportunity.png
 tags:
+  - AFFH
+  - ArcGIS
   - Equal Opportunity
   - Fair Housing
   - Federal-Government
+  - Geospatial
   - Housing
   - HUD
+  - Open Data
 tags_raw:
+  - AFFH
+  - ArcGIS
   - Equal Opportunity
   - Fair Housing
   - Federal Government
+  - Geospatial
   - Housing
   - HUD
+  - Open Data
 url: >-
   https://raw.githubusercontent.com/api-evangelist/fair-housing-and-equal-opportunity/refs/heads/main/apis.yml
 created: '2024-12-03'
-modified: '2026-04-28'
-position: Consuming
-access: 3rd-Party
+modified: '2026-09-07'
+position: Producing
+access: 1st-Party
 specificationVersion: '0.23'
 apis:
   - aid: fair-housing-and-equal-opportunity:fair-housing-and-equal-opportunity
     name: Fair Housing and Equal Opportunity
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     description: >-
       The Office of Fair Housing and Equal Opportunity (FHEO) administers and
       enforces federal laws that prohibit discrimination in housing based on
       race, color, national origin, religion, sex, familial status, and
-      disability. This entry tracks FHEO as a federal program area within HUD
-      that publishes complaint, enforcement, and program data through HUD's
-      broader Open Data and HUD User platforms rather than a dedicated public
-      API.
+      disability. This entry tracks FHEO as a federal program area within HUD.
+      It is a documentation entry, not a callable surface: FHEO publishes no
+      developer portal and no OpenAPI, and its machine-readable surfaces are
+      the ArcGIS REST feature services listed as separate entries below plus
+      the case-filing spreadsheets cross-listed on data.hud.gov.
     humanURL: https://www.hud.gov/fairhousing
     tags:
       - Equal Opportunity
@@ -73,29 +90,191 @@ apis:
     properties:
       - type: Documentation
         url: https://www.hud.gov/fairhousing
-      - type: Program Office
+      - type: X-ProgramOffice
         url: https://www.hud.gov/program_offices/fair_housing_equal_opp
-      - type: Open Data
-        url: https://hudgis-hud.opendata.arcgis.com/
-      - type: HUD User Data
+      - type: X-OpenData
+        url: https://hudgis-hud.opendata.arcgis.com/search?tags=fheo
+      - type: X-HUDUserData
         url: https://www.huduser.gov/portal/pdrdatas_landing.html
+      - type: Support
+        url: https://www.hud.gov/program_offices/fair_housing_equal_opp/contact_fheo
+    contact:
+      - FN: HUD FHEO
+        url: https://www.hud.gov/program_offices/fair_housing_equal_opp/contact_fheo
+  - aid: fair-housing-and-equal-opportunity:fhap-grantees
+    name: Fair Housing Assistance Program (FHAP) Grantees
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    description: >-
+      An anonymously callable ArcGIS REST feature service publishing the
+      locations, jurisdictions, regions and award amounts of Fair Housing
+      Assistance Program grantees — the state and local agencies that FHEO has
+      determined enforce fair housing laws substantially equivalent to the
+      federal Fair Housing Act. One point layer (FHAP_Grantees, 22 fields),
+      Query and Extract capabilities only, 1,000 records per page with
+      pagination supported.
+    humanURL: https://hudgis-hud.opendata.arcgis.com/datasets/HUD::fair-housing-assistance-program-grantees
+    baseURL: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer
+    tags:
+      - ArcGIS
+      - Fair Housing
+      - FHAP
+      - Grants
+      - Geospatial
+    properties:
+      - type: Documentation
+        url: https://hudgis-hud.opendata.arcgis.com/datasets/HUD::fair-housing-assistance-program-grantees/about
+      - type: X-ArcGISServiceMetadata
+        url: arcgis/fair-housing-and-equal-opportunity-fhap-grantees-featureserver.json
+      - type: X-ArcGISLayerSchema
+        url: arcgis/fair-housing-and-equal-opportunity-fhap-grantees-layer.json
+      - type: X-GeoJSON
+        url: https://hudgis-hud.opendata.arcgis.com/api/download/v1/items/f226a169a902414ea17f545d9d02b159/geojson?layers=0
+  - aid: fair-housing-and-equal-opportunity:fhip-grantees
+    name: Fair Housing Initiatives Program (FHIP) Grantees
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    description: >-
+      An anonymously callable ArcGIS REST feature service publishing the
+      locations, components and award amounts of Fair Housing Initiatives
+      Program grantees — the private non-profit organizations funded under 42
+      U.S.C. 3616 to work on housing discrimination. One point layer
+      (FHIP_Grantees, 24 fields), Query and Extract capabilities only, 1,000
+      records per page with pagination supported.
+    humanURL: https://hudgis-hud.opendata.arcgis.com/datasets/HUD::fair-housing-initiatives-program-grantees
+    baseURL: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Initiatives_Program_Grantees/FeatureServer
+    tags:
+      - ArcGIS
+      - Fair Housing
+      - FHIP
+      - Grants
+      - Geospatial
+    properties:
+      - type: Documentation
+        url: https://hudgis-hud.opendata.arcgis.com/datasets/HUD::fair-housing-initiatives-program-grantees/about
+      - type: X-ArcGISServiceMetadata
+        url: arcgis/fair-housing-and-equal-opportunity-fhip-grantees-featureserver.json
+      - type: X-ArcGISLayerSchema
+        url: arcgis/fair-housing-and-equal-opportunity-fhip-grantees-layer.json
+      - type: X-GeoJSON
+        url: https://hudgis-hud.opendata.arcgis.com/api/download/v1/items/e0134d677e734c7bbb89206e59c35412/geojson?layers=0
+  - aid: fair-housing-and-equal-opportunity:recap
+    name: Racially or Ethnically Concentrated Areas of Poverty (R/ECAP)
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    description: >-
+      An anonymously callable ArcGIS REST feature service publishing census
+      tract polygons flagged as Racially or Ethnically Concentrated Areas of
+      Poverty, the geography that anchors FHEO's Affirmatively Furthering Fair
+      Housing analysis. Layer 15 (RECAP) carries the 1990/2000/2010 and current
+      flags; the companion 2020 service exposes layer 16 (RECAP_2020) on
+      Census 2020 geographies. Query and Extract only.
+    humanURL: https://hudgis-hud.opendata.arcgis.com/datasets/HUD::racially-or-ethnically-concentrated-areas-of-poverty-r-ecaps
+    baseURL: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty/FeatureServer
+    tags:
+      - AFFH
+      - ArcGIS
+      - Fair Housing
+      - Geospatial
+      - Segregation
+    properties:
+      - type: Documentation
+        url: https://hudgis-hud.opendata.arcgis.com/datasets/HUD::racially-or-ethnically-concentrated-areas-of-poverty-r-ecaps/about
+      - type: X-ArcGISServiceMetadata
+        url: arcgis/fair-housing-and-equal-opportunity-recap-featureserver.json
+      - type: X-ArcGISLayerSchema
+        url: arcgis/fair-housing-and-equal-opportunity-recap-layer.json
+      - type: X-RECAP2020Service
+        url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty_2020/FeatureServer
+      - type: X-ArcGISServiceMetadata
+        url: arcgis/fair-housing-and-equal-opportunity-recap-2020-featureserver.json
+  - aid: fair-housing-and-equal-opportunity:affh-t
+    name: AFFH Data and Mapping Tool (AFFH-T) Services
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    description: >-
+      The ArcGIS Server folder behind HUD's Affirmatively Furthering Fair
+      Housing Data and Mapping Tool, FHEO's own analysis surface for program
+      participants. Publishes AffhtMapService and AFFHTReportService MapServer
+      endpoints, an AFFHTReports geoprocessing service, and WebMaps feature and
+      map services. The tool's own web front end at https://egis.hud.gov/affht/
+      returned HTTP 503 when probed on 2026-09-07; the REST services behind it
+      answered 200.
+    humanURL: https://egis.hud.gov/affht/
+    baseURL: https://egis.hud.gov/arcgis/rest/services/affht
+    tags:
+      - AFFH
+      - ArcGIS
+      - Fair Housing
+      - Geospatial
+      - Mapping
+    properties:
+      - type: X-ArcGISServices
+        url: https://egis.hud.gov/arcgis/rest/services/affht
+      - type: X-ArcGISServiceMetadata
+        url: arcgis/fair-housing-and-equal-opportunity-affht-mapserver.json
+      - type: X-AFFHServicesFolder
+        url: https://egis.hud.gov/arcgis/rest/services/affh
+      - type: X-RuleTerminationNotice
+        url: https://www.hud.gov/news/hud-no-25-034
 common:
-  - type: DomainSecurity
-    url: security/fair-housing-and-equal-opportunity-domain-security.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/office-of-fair-housing-and-equal-opportunity
   - type: Website
     url: https://www.hud.gov
-  - type: Program Office
-    url: https://www.hud.gov/program_offices/fair_housing_equal_opp
-  - type: Open Data
+  - type: DeveloperPortal
     url: https://hudgis-hud.opendata.arcgis.com/
-  - type: HUD User
+  - type: Documentation
+    url: https://www.hud.gov/program_offices/fair_housing_equal_opp
+  - type: X-ProgramOffice
+    url: https://www.hud.gov/program_offices/fair_housing_equal_opp
+  - type: X-OpenData
+    url: https://hudgis-hud.opendata.arcgis.com/search?tags=fheo
+  - type: X-HUDUser
     url: https://www.huduser.gov/portal/home.html
+  - type: Support
+    url: https://www.hud.gov/program_offices/fair_housing_equal_opp/contact_fheo
+  - type: HelpCenter
+    url: https://www.hud.gov/contactus
+  - type: Blog
+    url: https://www.hud.gov/press
+  - type: PrivacyPolicy
+    url: https://www.hud.gov/aboutus/privacy-policy
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/office-of-fair-housing-and-equal-opportunity
   - type: GitHubOrganization
-    url: https://github.com/HUD
+    url: https://github.com/hudgov
+  - type: Security
+    url: https://www.hud.gov/vulnerability-disclosure-policy
+  - type: Authentication
+    url: authentication/fair-housing-and-equal-opportunity-authentication.yml
+  - type: Conventions
+    url: conventions/fair-housing-and-equal-opportunity-conventions.yml
+  - type: ErrorCatalog
+    url: errors/fair-housing-and-equal-opportunity-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/fair-housing-and-equal-opportunity-lifecycle.yml
+  - type: Conformance
+    url: conformance/fair-housing-and-equal-opportunity-conformance.yml
+  - type: DataModel
+    url: data-model/fair-housing-and-equal-opportunity-data-model.yml
+  - type: Packages
+    url: packages/fair-housing-and-equal-opportunity-packages.yml
+  - type: Plans
+    url: plans/fair-housing-and-equal-opportunity-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/fair-housing-and-equal-opportunity-rate-limits.yml
+  - type: X-ArcGISServiceMetadata
+    url: arcgis/fair-housing-and-equal-opportunity-arcgis.yml
+  - type: DomainSecurity
+    url: security/fair-housing-and-equal-opportunity-domain-security.yml
+  - type: VulnerabilityDisclosure
+    url: security/fair-housing-and-equal-opportunity-vulnerability-disclosure.yml
+  - type: X-MCPServerCandidate
+    url: mcp/fair-housing-and-equal-opportunity-mcp.yml
+  - type: LLMsTxt
+    url: llms/fair-housing-and-equal-opportunity-llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
-x-parent: department-of-housing-and-urban-development
+x-enrichment:
+  date: '2026-09-07'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v3
+x-parent: hud
 x-relationship: division

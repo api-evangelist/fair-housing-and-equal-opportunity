@@ -1,0 +1,60 @@
+generated: '2026-09-07'
+method: probed
+source: >-
+  Live unauthenticated calls on 2026-09-07 against every FHEO baseURL, plus the
+  response headers those calls returned. derive-authentication.py found no
+  securitySchemes because there is no OpenAPI to read.
+provider: Fair Housing and Equal Opportunity
+providerId: fair-housing-and-equal-opportunity
+summary: >-
+  Every FHEO surface in this record is anonymously readable. No key, no token,
+  no account, no registration. An unauthenticated GET against the FHAP grantee
+  layer's /query endpoint returned HTTP 200 with feature data, and the service
+  advertises capabilities "Query,Extract" only — there is no write surface to
+  authenticate against.
+schemes: []
+scheme_count: 0
+posture:
+  anonymous_read: true
+  registration_required: false
+  api_key_required: false
+  oauth2: false
+  openid_connect: false
+  mutual_tls: false
+  write_surface: false
+evidence:
+  - url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer/0/query?where=1%3D1&outFields=FHAP_NAME,STATE&returnGeometry=false&resultRecordCount=2&f=json
+    method: GET
+    credentials_sent: none
+    http_status: 200
+    result: features returned
+  - url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer?f=pjson
+    method: GET
+    credentials_sent: none
+    http_status: 200
+    result: 'capabilities: "Query,Extract"'
+  - url: https://egis.hud.gov/arcgis/rest/services/affht/AffhtMapService/MapServer?f=pjson
+    method: GET
+    credentials_sent: none
+    http_status: 200
+    result: service metadata returned
+optional_credential:
+  supported: true
+  note: >-
+    The ArcGIS Online services vary on X-Esri-Authorization (the response
+    carries `vary: X-Esri-Authorization`) and accept an Authorization or
+    X-Esri-Authorization header, so an ArcGIS Online token CAN be presented.
+    Presenting one is never required for these public layers; it only moves the
+    request onto the caller's own ArcGIS organisation quota. This is Esri
+    platform behaviour, not an FHEO-published auth scheme, which is why no
+    scheme is listed above.
+discovery:
+  well_known_openid_configuration: 404
+  well_known_oauth_authorization_server: 404
+  note: >-
+    Probed on www.hud.gov, hud.gov, www.huduser.gov, egis.hud.gov and
+    hudgis-hud.opendata.arcgis.com. See
+    well-known/fair-housing-and-equal-opportunity-well-known.yml.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

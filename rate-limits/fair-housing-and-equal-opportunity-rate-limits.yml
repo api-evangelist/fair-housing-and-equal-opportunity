@@ -3,90 +3,78 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Fair Housing and Equal Opportunity
 providerId: fair-housing-and-equal-opportunity
+generated: '2026-09-07'
+method: probed
+source: >-
+  Response headers observed on a live unauthenticated GET to
+  https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer/0/query
+  on 2026-09-07, plus the maxRecordCount values in the service metadata saved in
+  arcgis/.
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - Equal Opportunity
-  - Fair Housing
-  - Federal Government
-  - Housing
-  - HUD
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Fair Housing and Equal Opportunity API surface.
-  Captures per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold
-  values to be replaced with published provider limits.
+modified: '2026-09-07'
+supersedes: >-
+  REPLACES a 2026-05-04 bulk-sweep scaffold that invented free / professional /
+  enterprise request tiers and X-RateLimit-* headers this provider does not
+  return. That was fabrication and has been removed.
+limit_count: 0
+limits: []
+published_limits:
+  documented: false
+  note: >-
+    FHEO and HUD document no rate limit for any of these surfaces. There is no
+    published requests-per-second, no quota, and no throttling policy. An honest
+    zero: nothing is published, so nothing is recorded.
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Fair Housing and Equal Opportunity
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Fair Housing and Equal Opportunity
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Fair Housing and Equal Opportunity
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Fair Housing and Equal Opportunity
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Fair Housing and Equal Opportunity
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  standard: false
+  limit: null
+  remaining: null
+  reset: null
+  retryAfter: null
+  policy: null
+observed_headers:
+  - name: x-esri-org-request-units-per-min
+    observed_value: usage=275;max=6000
+    meaning: >-
+      A live, per-minute request-unit budget for the ArcGIS Online organisation
+      hosting these layers. This is the ONLY quantitative capacity signal on the
+      wire. It is Esri platform telemetry, not an FHEO-published limit, and the
+      usage figure reflects ALL traffic to HUD's ArcGIS org, not just the
+      caller's.
+  - name: x-esri-query-request-units
+    observed_value: '3'
+    meaning: The cost in request units of the single query that was issued.
+  - name: x-esri-tiles-basic-query-mode
+    observed_value: 'true'
+  - name: cache-control
+    observed_value: public, max-age=30, s-maxage=30
+    meaning: >-
+      Responses are publicly cacheable for 30 seconds — the practical way to
+      stay well inside the org budget.
+response_codes:
+  throttled: null
+  note: >-
+    No 429 was observed and none is documented; exhaustion behaviour is untested
+    here. The org budget stood at usage=275 of max=6000 when probed, so
+    throttling was never approached.
+pagination_caps:
+  note: >-
+    The enforced ceiling a consumer will actually hit is the per-page record
+    cap, not a request rate.
+  layers:
+    - layer: FHAP_Grantees
+      max_records_per_page: 1000
+      total_records: 889
+    - layer: FHIP_Grantees
+      max_records_per_page: 1000
+      total_records: 1445
+    - layer: RECAP
+      max_records_per_page: 1000
+      total_records: 5034
+    - layer: RECAP_2020
+      max_records_per_page: 2000
+      total_records: 3559
+  truncation_signal: exceededTransferLimit (boolean in the response body)
+policies: []
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

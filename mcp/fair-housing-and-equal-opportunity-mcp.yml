@@ -1,0 +1,88 @@
+generated: '2026-09-07'
+method: derived
+source: >-
+  Derived from the ArcGIS REST service and layer metadata fetched verbatim into
+  arcgis/ on 2026-09-07. No MCP server was found for FHEO or HUD on any host,
+  in the npm/PyPI registries, or in github.com/hudgov.
+provider: Fair Housing and Equal Opportunity
+providerId: fair-housing-and-equal-opportunity
+status: candidate
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: none
+  verified: derived
+note: >-
+  NOBODY SHIPS AN MCP SERVER FOR THIS PROVIDER. The tools below are a candidate
+  list derived from the four anonymously callable ArcGIS REST feature services
+  FHEO's data is published through; they describe what a server COULD expose,
+  not anything an agent can call today. Do not read this file as an agent
+  surface. A community npm package (mcp-fairrent) wraps HUD Fair Market Rents,
+  which belongs to PD&R on the parent HUD record, not to FHEO.
+surfaces:
+  - name: FHAP Grantees FeatureServer
+    url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Assistance_Program_Grantees/FeatureServer/0
+    protocol: ArcGIS REST
+    auth: none
+    gated: false
+  - name: FHIP Grantees FeatureServer
+    url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Fair_Housing_Initiatives_Program_Grantees/FeatureServer/0
+    protocol: ArcGIS REST
+    auth: none
+    gated: false
+  - name: R/ECAP FeatureServer
+    url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty/FeatureServer/15
+    protocol: ArcGIS REST
+    auth: none
+    gated: false
+  - name: R/ECAP 2020 FeatureServer
+    url: https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty_2020/FeatureServer/16
+    protocol: ArcGIS REST
+    auth: none
+    gated: false
+tools:
+  - name: search_fhap_grantees
+    description: >-
+      Query Fair Housing Assistance Program grantees — the state and local
+      agencies FHEO certifies as substantially equivalent — filtering by state,
+      region, city or award year and returning name, address, jurisdiction level
+      and award amount.
+    backing_operation: GET /FeatureServer/0/query
+    inputs_from: arcgis/fair-housing-and-equal-opportunity-fhap-grantees-layer.json
+    confidence: high
+  - name: search_fhip_grantees
+    description: >-
+      Query Fair Housing Initiatives Program grantees — the private non-profits
+      funded under 42 U.S.C. 3616 — filtering by state, city, program component
+      or award year.
+    backing_operation: GET /FeatureServer/0/query
+    inputs_from: arcgis/fair-housing-and-equal-opportunity-fhip-grantees-layer.json
+    confidence: high
+  - name: lookup_recap_tract
+    description: >-
+      Look up whether a census tract is a Racially or Ethnically Concentrated
+      Area of Poverty by GEOID, county or state, returning the 1990/2000/2010
+      and current R/ECAP flags.
+    backing_operation: GET /FeatureServer/15/query
+    inputs_from: arcgis/fair-housing-and-equal-opportunity-recap-layer.json
+    confidence: high
+  - name: lookup_recap_tract_2020
+    description: >-
+      The same R/ECAP lookup against Census 2020 tract geographies (RCAP_20).
+    backing_operation: GET /FeatureServer/16/query
+    inputs_from: arcgis/fair-housing-and-equal-opportunity-recap-2020-layer.json
+    confidence: high
+  - name: describe_layer
+    description: >-
+      Return the field schema, geometry type, record cap and query capabilities
+      of any of the four layers, so an agent can build a valid where-clause
+      before querying.
+    backing_operation: GET /FeatureServer/{layerId}?f=json
+    inputs_from: arcgis/
+    confidence: high
+tool_count: 5
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
