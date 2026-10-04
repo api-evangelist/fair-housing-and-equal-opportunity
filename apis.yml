@@ -43,7 +43,7 @@ tags:
   - ArcGIS
   - Equal Opportunity
   - Fair Housing
-  - Federal-Government
+  - Federal Government
   - Geospatial
   - Housing
   - HUD
@@ -58,6 +58,7 @@ tags_raw:
   - Housing
   - HUD
   - Open Data
+  - Federal-Government
 url: >-
   https://raw.githubusercontent.com/api-evangelist/fair-housing-and-equal-opportunity/refs/heads/main/apis.yml
 created: '2024-12-03'
@@ -82,11 +83,12 @@ apis:
     tags:
       - Equal Opportunity
       - Fair Housing
-      - Federal-Government
+      - Federal Government
     tags_raw:
       - Equal Opportunity
       - Fair Housing
       - Federal Government
+      - Federal-Government
     properties:
       - type: Documentation
         url: https://www.hud.gov/fairhousing
