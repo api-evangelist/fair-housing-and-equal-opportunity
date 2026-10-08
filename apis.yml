@@ -216,6 +216,8 @@ apis:
       - type: X-RuleTerminationNotice
         url: https://www.hud.gov/news/hud-no-25-034
 common:
+  - type: FinOps
+    url: finops/fair-housing-and-equal-opportunity-finops.yml
   - type: Website
     url: https://www.hud.gov
   - type: DeveloperPortal
