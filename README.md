@@ -1,4 +1,4 @@
-# Fair Housing and Equal Opportunity (fair-housing-and-equal-opportunity)
+# Fair Housing and Equal Opportunity
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,57 +64,119 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-The mission of the Office of Fair Housing and Equal Opportunity (FHEO) is to eliminate housing discrimination, promote economic opportunity, and achieve diverse, inclusive communities by leading the nation in the enforcement, administration, development, and public understanding of federal fair housing policies and laws.
+The mission of the Office of Fair Housing and Equal Opportunity (FHEO) is to eliminate housing discrimination, promote economic opportunity, and achieve diverse, inclusive communities by leading the nation in the enforcement, administration, development, and public understanding of federal fair housing policies and laws. FHEO administers the Fair Housing Assistance Program (FHAP) and the Fair Housing Initiatives Program (FHIP), enforces Title VIII of the Civil Rights Act, and owns the Affirmatively Furthering Fair Housing (AFFH) rule and its Data and Mapping Tool. FHEO does not run a developer portal of its own; its program data is published as anonymously callable ArcGIS REST feature services inside HUD's ArcGIS Online organization and through the HUD Open Data site, and its AFFH-T map and report services run on HUD's eGIS ArcGIS Server.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/fair-housing-and-equal-opportunity/refs/heads/main/apis.yml)
+**Areas:** AFFH · ArcGIS · Equal Opportunity · Fair Housing · Federal Government · Geospatial · Housing · HUD · Open Data
 
-## Scope
+## Fair Housing and Equal Opportunity on APIs.io
 
-- **Type:** Contract
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Fair Housing and Equal Opportunity is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fair-housing-and-equal-opportunity/](https://apis.io/providers/fair-housing-and-equal-opportunity/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- Equal Opportunity
-- Fair Housing
-- Federal Government
-- Housing
-- HUD
+- [Fair Housing and Equal Opportunity](https://apis.io/apis/fair-housing-and-equal-opportunity/fair-housing-and-equal-opportunity/) — The Office of Fair Housing and Equal Opportunity (FHEO) administers and enforces federal laws that prohibit discrimination in housing based on race, color,…
+- [Fair Housing Assistance Program (FHAP) Grantees](https://apis.io/apis/fair-housing-and-equal-opportunity/fhap-grantees/) — An anonymously callable ArcGIS REST feature service publishing the locations, jurisdictions, regions and award amounts of Fair Housing Assistance Program…
+- [Fair Housing Initiatives Program (FHIP) Grantees](https://apis.io/apis/fair-housing-and-equal-opportunity/fhip-grantees/) — An anonymously callable ArcGIS REST feature service publishing the locations, components and award amounts of Fair Housing Initiatives Program grantees —…
+- [Racially or Ethnically Concentrated Areas of Poverty (R/ECAP)](https://apis.io/apis/fair-housing-and-equal-opportunity/recap/) — An anonymously callable ArcGIS REST feature service publishing census tract polygons flagged as Racially or Ethnically Concentrated Areas of Poverty, the…
+- [AFFH Data and Mapping Tool (AFFH-T) Services](https://apis.io/apis/fair-housing-and-equal-opportunity/affh-t/) — The ArcGIS Server folder behind HUD's Affirmatively Furthering Fair Housing Data and Mapping Tool, FHEO's own analysis surface for program participants.…
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-12-03
-- **Modified:** 2026-04-28
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### Fair Housing and Equal Opportunity
-The Office of Fair Housing and Equal Opportunity (FHEO) administers and enforces federal laws that prohibit discrimination in housing based on race, color, national origin, religion, sex, familial status, and disability. This entry tracks FHEO as a federal program area within HUD that publishes complaint, enforcement, and program data through HUD's broader Open Data and HUD User platforms rather than a dedicated public API.
+Model Context Protocol servers that expose the API to agents.
 
-**Human URL:** [https://www.hud.gov/fairhousing](https://www.hud.gov/fairhousing)
+- [fair-housing-and-equal-opportunity-mcp.yml](https://apis.io/servers/fair-housing-and-equal-opportunity/fair-housing-and-equal-opportunity-mcp-yml/)
 
-#### Tags
-- Equal Opportunity
-- Fair Housing
-- Federal Government
+#### Security (3)
 
-#### Properties
-- [Documentation](https://www.hud.gov/fairhousing)
-- [Program Office](https://www.hud.gov/program_offices/fair_housing_equal_opp)
-- [Open Data](https://hudgis-hud.opendata.arcgis.com/)
-- [HUD User Data](https://www.huduser.gov/portal/pdrdatas_landing.html)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Fair Housing And Equal Opportunity Authentication](https://apis.io/security/fair-housing-and-equal-opportunity/fair-housing-and-equal-opportunity-authentication/)
+- [Fair Housing And Equal Opportunity Domain Security](https://apis.io/security/fair-housing-and-equal-opportunity/fair-housing-and-equal-opportunity-domain-security/)
+- [Fair Housing And Equal Opportunity Vulnerability Disclosure](https://apis.io/security/fair-housing-and-equal-opportunity/fair-housing-and-equal-opportunity-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Fair Housing And Equal Opportunity Plans Pricing](https://apis.io/plans/fair-housing-and-equal-opportunity/fair-housing-and-equal-opportunity-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Fair Housing And Equal Opportunity Rate Limits](https://apis.io/rate-limits/fair-housing-and-equal-opportunity/fair-housing-and-equal-opportunity-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Fair Housing And Equal Opportunity Finops](https://apis.io/finops/fair-housing-and-equal-opportunity/fair-housing-and-equal-opportunity-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.hud.gov)
-- [Program Office](https://www.hud.gov/program_offices/fair_housing_equal_opp)
-- [Open Data](https://hudgis-hud.opendata.arcgis.com/)
-- [HUD User](https://www.huduser.gov/portal/home.html)
-- [GitHub Organization](https://github.com/HUD)
+- [Documentation](https://www.hud.gov/program_offices/fair_housing_equal_opp)
+- [Support](https://www.hud.gov/program_offices/fair_housing_equal_opp/contact_fheo)
+- [Blog](https://www.hud.gov/press)
+- [Security](https://www.hud.gov/vulnerability-disclosure-policy)
+- [Privacy policy](https://www.hud.gov/aboutus/privacy-policy)
+- [GitHub](https://github.com/hudgov)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
+**Kin Score 20.7** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-**Email:** kin@apievangelist.com
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 10.5 |
+
+**Agent readiness 7.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 26.5** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fair-housing-and-equal-opportunity/](https://apis.io/providers/fair-housing-and-equal-opportunity/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Fair Housing and Equal Opportunity: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fair-housing-and-equal-opportunity/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
